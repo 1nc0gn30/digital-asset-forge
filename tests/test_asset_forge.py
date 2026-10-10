@@ -4,7 +4,14 @@
 Zero external test framework dependencies.
 """
 
+import os
+import sys
 import unittest
+
+src_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src"))
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
 from digital_asset_forge.ratios import RatioCalculator, RATIO_FAMILIES
 from digital_asset_forge.pack_generator import ArtPackGenerator
 from digital_asset_forge.printing_guide import PrintingGuideGenerator
