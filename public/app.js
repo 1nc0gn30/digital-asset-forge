@@ -65,17 +65,34 @@
       localStorage.setItem("asset_forge_licensed", "true");
     }
 
+    const proBadge = document.getElementById("pro-badge");
     if (localStorage.getItem("asset_forge_licensed") === "true") {
       document.body.classList.add("licensed");
+      if (proBadge) {
+        proBadge.className = "brand-badge badge-pro";
+        proBadge.textContent = "⭐ PRO ACTIVE";
+      }
+    } else {
+      document.body.classList.remove("licensed");
+      if (proBadge) {
+        proBadge.className = "brand-badge badge-free";
+        proBadge.textContent = "FREE TIER";
+      }
     }
   }
 
   function openModal() {
-    if (paywallModal) paywallModal.classList.add("is-open");
+    if (paywallModal) {
+      paywallModal.classList.add("is-open");
+      paywallModal.style.display = "flex";
+    }
   }
 
   function closeModal() {
-    if (paywallModal) paywallModal.classList.remove("is-open");
+    if (paywallModal) {
+      paywallModal.classList.remove("is-open");
+      paywallModal.style.display = "none";
+    }
   }
 
   function slugify(text) {
@@ -203,11 +220,17 @@
   const downloadBtn = document.getElementById("btn-download-manifest");
   const unlockPaywallBtn = document.getElementById("btn-unlock-paywall");
   const openLicenseModalBtn = document.getElementById("btn-open-license-modal");
+  const headerKeyBtn = document.getElementById("btn-header-key");
   const modalCloseBtn = document.getElementById("modal-close-btn");
+  const licenseStatusEl = document.getElementById("license-status");
 
   if (copyBtn) copyBtn.addEventListener("click", handleCopyAction);
   if (downloadBtn) downloadBtn.addEventListener("click", handleDownloadAction);
   if (unlockPaywallBtn) unlockPaywallBtn.addEventListener("click", openModal);
+  if (headerKeyBtn) headerKeyBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    openModal();
+  });
   if (openLicenseModalBtn) openLicenseModalBtn.addEventListener("click", (e) => {
     e.preventDefault();
     openModal();
@@ -215,15 +238,32 @@
   if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
 
   if (activateBtn && licenseInput) {
-    activateBtn.addEventListener("click", () => {
+    const handleActivation = () => {
       const val = licenseInput.value.trim();
       if (val.length >= 6) {
         localStorage.setItem("asset_forge_licensed", "true");
-        document.body.classList.add("licensed");
-        closeModal();
-        alert("⭐ PRO ACTIVE! Lifetime Founding License successfully activated.");
+        checkLicense();
+        if (licenseStatusEl) {
+          licenseStatusEl.textContent = "✅ License successfully activated! All features unlocked.";
+          licenseStatusEl.style.color = "#10B981";
+        }
+        setTimeout(() => {
+          closeModal();
+          updateManifest();
+        }, 800);
       } else {
-        alert("Please enter a valid license key or receipt order ID.");
+        if (licenseStatusEl) {
+          licenseStatusEl.textContent = "❌ Please enter a valid license key or receipt order ID.";
+          licenseStatusEl.style.color = "#EF4444";
+        }
+      }
+    };
+
+    activateBtn.addEventListener("click", handleActivation);
+    licenseInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleActivation();
       }
     });
   }
@@ -234,15 +274,30 @@
     });
   }
 
-  const depayBtn = document.getElementById("btn-depay-solana");
-  if (depayBtn) {
-    depayBtn.addEventListener("click", () => {
+  // DePay Web3 Solana Triggers
+  document.querySelectorAll(".btn-depay-trigger").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (window.DePayButtons && typeof window.DePayButtons.init === "function") {
+        try {
+          window.DePayButtons.init({
+            integration: "428790dd-7ad1-407c-8ecf-c048c77a4cb8",
+            receiver: "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK",
+            amount: 19
+          });
+          return;
+        } catch (err) {
+          console.warn("DePay init warning:", err);
+        }
+      }
       const solanaAddress = "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK";
       navigator.clipboard.writeText(solanaAddress).then(() => {
-        alert(`SOLANA RECEIVER COPIED TO CLIPBOARD:\n${solanaAddress}\n\nSend $19 equivalent in SOL or USDC, then paste transaction signature in license activation.`);
+        alert(`SOLANA RECEIVER COPIED TO CLIPBOARD:\n${solanaAddress}\n\nSend $19 equivalent in SOL or USDC, then enter transaction signature in license activation.`);
+      }).catch(() => {
+        prompt("Solana receiver address for $19 payment:", solanaAddress);
       });
     });
-  }
+  });
 
   checkLicense();
   updateManifest();
