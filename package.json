@@ -1,0 +1,12 @@
+{
+  "name": "digital-asset-forge",
+  "version": "2.5.0",
+  "description": "High-Res 300 DPI multi-ratio wall art pack generator (2:3, 3:4, 4:5, 11:14, ISO) for Etsy & Shopify digital downloads (98% margin) with 20MB multi-zip splitting and Antigravity MCP suite.",
+  "main": "public/app.js",
+  "scripts": {
+    "serve": "python3 -m http.server 8118 --directory public",
+    "test": "pytest tests"
+  },
+  "author": "Neal Frazier Tech (@1nc0gn30)",
+  "license": "MIT"
+}
