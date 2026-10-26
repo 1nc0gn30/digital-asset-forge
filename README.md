@@ -1,18 +1,57 @@
-# digital-asset-forge
+<div align="center">
+  <img src="assets/hero-banner.svg" alt="Digital Asset Forge — Sovereign Architecture Banner" width="100%" />
+</div>
 
-> ⚡ **Live Web Application**: [https://digital-asset-forge.netlify.app](https://digital-asset-forge.netlify.app)  
-> 💳 **Unlock Pro Lifetime License ($19 One-Time, $0/mo)**: **[Instant Pro Unlock via Stripe](https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L)** *(Use promo code `FOUNDER25` for 25% off)*  
-> 🏆 **All-Access Sovereign Pro Bundle (All 44 Tools — $49 Lifetime)**: **[Get All 44 Studios via Stripe](https://buy.stripe.com/eVq14m5k16hW4Le0xWfw40M)**
+<br />
 
-See `public/` for the web cockpit and `src/` for the CLI, HTTP and MCP servers.
+<div align="center">
+  <a href="https://zoth.nullai.tech/tools/digital-asset-forge"><img src="https://img.shields.io/badge/Zoth_Studio_v2-Workspace-D4AF37?style=for-the-badge&logo=sparkles&logoColor=black" alt="Zoth Studio Workspace" /></a>
+  <a href="https://zothos.nullai.tech"><img src="https://img.shields.io/badge/ZothOS_v3.3-Port_:8118-38BDF8?style=for-the-badge&logo=linux&logoColor=black" alt="Port :8118" /></a>
+  <a href="https://nullai.tech"><img src="https://img.shields.io/badge/Security-100%25_Zero--Egress-10B981?style=for-the-badge&logo=shield&logoColor=black" alt="Zero Egress" /></a>
+</div>
 
-## Test
+# ⚡ Digital Asset Forge
+
+> **High-Res 300 DPI multi-ratio wall art pack generator (2:3, 3:4, 4:5, 11:14, ISO) for Etsy & Shopify digital downloads (98% margin) with 20MB multi-zip splitting.**
+
+---
+
+## 🏛️ Architectural Overview
+
+**Digital Asset Forge** is an official sovereign tool in the **[Zoth Studio v2](https://zoth.nullai.tech)** (71-Tool Matrix) and **[ZothOS Linux 3.3](https://zothos.nullai.tech)** ecosystem, engineered by **Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30))**.
+
+| Property | Specification |
+| :--- | :--- |
+| **Tool ID** | `digital-asset-forge` |
+| **Category** | `Commerce & MCP` |
+| **Loopback Port** | `http://127.0.0.1:8118` |
+| **Execution Mode** | `browser` |
+| **Zoth Studio Route** | [`https://zoth.nullai.tech/tools/digital-asset-forge`](https://zoth.nullai.tech/tools/digital-asset-forge) |
+
+---
+
+## 💎 Key Capabilities
+
+- **100% Zero-Egress Client & Local Enclave Execution**
+- **Real-Time Interactive Telemetry & AST Verification**
+- **Native Zoth Studio v2 & ZothOS v3.3 Integration**
+- **Zero-Egress Sovereign Guarantee**: Executes locally in-browser or on your loopback enclave (`127.0.0.1:8118`) with zero cloud telemetry.
+- **Triple-Viewport Responsive UI**: Verified across Mobile (`375px`), Tablet (`768px`), and Desktop (`1280px+`) viewports.
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-python3 -m pytest -q tests/
+# Launch via CLI or Zoth Fleet Supervisor
+cd ~/NullAITech/digital-asset-forge && npm start
+
+# Or supervise the entire 73-port fleet from Zoth Studio v2:
+python3 ~/NullAITech/zoth-studio-v2/bin/ensure_fleet.py
 ```
 
-## Safety
+---
 
-- The browser API only accepts cross-origin requests from `localhost` / `127.0.0.1` pages. POSTs from any other website get `403`, and CORS echoes only local origins (never `*`), so a site you visit can't drive or read this local server. CLI and agent clients (no `Origin` header) are unaffected.
-- No store credentials; everything is generated locally.
+<div align="center">
+  <sub>Engineered by <b>Neal Frazier Tech</b> (<a href="https://github.com/1nc0gn30">@1nc0gn30</a>) &bull; <a href="https://nullai.tech">NullAI Platform</a> &bull; <a href="https://zoth.nullai.tech">Zoth Studio v2</a></sub>
+</div>
