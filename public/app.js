@@ -78,55 +78,26 @@
   }
 
   function isProActive() {
-    const k1 = localStorage.getItem("asset_forge_licensed");
-    const k2 = localStorage.getItem("asset_forge_license");
-    const k3 = localStorage.getItem("agent_asset_forge_pro");
-    const k4 = localStorage.getItem("zoth_asset_forge_licensed");
-    const k5 = localStorage.getItem("pro_licensed");
-    const param = new URLSearchParams(window.location.search).get("licensed");
-    return k1 === "true" || k2 === "FORGE-PRO-2026" || k3 === "FORGE-PRO-2026" || k4 === "true" || k5 === "true" || param === "true";
+    return true;
   }
 
   function checkLicense() {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("licensed") === "true" || urlParams.get("pro") === "true" || urlParams.get("session_id")) {
-      localStorage.setItem("asset_forge_licensed", "true");
-      localStorage.setItem("asset_forge_license", "FORGE-PRO-2026");
-      localStorage.setItem("agent_asset_forge_pro", "FORGE-PRO-2026");
-      localStorage.setItem("zoth_asset_forge_licensed", "true");
-      localStorage.setItem("pro_licensed", "true");
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-    }
-
     const proBadge = document.getElementById("licenseBadge") || document.getElementById("pro-badge");
     const salesBanner = document.getElementById("salesBanner");
 
-    if (isProActive()) {
-      document.body.classList.add("licensed", "pro-unlocked", "pro-licensed");
-      if (proBadge) {
-        proBadge.className = "brand-badge badge-pro";
-        proBadge.textContent = "⭐ PRO ACTIVE";
-        proBadge.style.background = "rgba(212, 175, 55, 0.2)";
-        proBadge.style.color = "var(--gold, #D4AF37)";
-        proBadge.style.borderColor = "var(--gold, #D4AF37)";
-      }
-      if (salesBanner) {
-        salesBanner.style.display = "none";
-      }
-      if (codePreview) {
-        codePreview.classList.remove("paywall-blur");
-      }
-    } else {
-      document.body.classList.remove("licensed", "pro-unlocked", "pro-licensed");
-      if (proBadge) {
-        proBadge.className = "brand-badge badge-free";
-        proBadge.textContent = "⚡ FREE TIER";
-      }
-      if (salesBanner) {
-        salesBanner.style.display = "";
-      }
+    document.body.classList.add("licensed", "pro-unlocked", "pro-licensed");
+    if (proBadge) {
+      proBadge.className = "brand-badge badge-pro";
+      proBadge.textContent = "✦ 100% UNLOCKED";
+      proBadge.style.background = "rgba(16, 185, 129, 0.2)";
+      proBadge.style.color = "var(--emerald, #10B981)";
+      proBadge.style.borderColor = "var(--emerald, #10B981)";
+    }
+    if (salesBanner) {
+      salesBanner.style.display = "none";
+    }
+    if (codePreview) {
+      codePreview.classList.remove("paywall-blur");
     }
   }
 

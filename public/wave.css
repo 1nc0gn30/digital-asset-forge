@@ -1,0 +1,173 @@
+/* Digital Asset Forge — Working Tool Surface Enhancements (Wave)
+ * Visual Idea: The Precision Calibration Seam
+ * Subtle titanium surface framing, enhanced typographic hierarchy,
+ * high-contrast focus rings, and smooth 280ms expo-out manifest reveal.
+ * All selectors strictly exist in public/index.html.
+ */
+
+/* 1. Working Tool Surface: Bento Panels & Containers */
+#workspace {
+  scroll-margin-top: 80px;
+}
+
+.bento-cockpit {
+  gap: 24px;
+}
+
+.control-panel,
+.results-panel,
+.output-section {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.control-panel:focus-within,
+.results-panel:focus-within {
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+.panel-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.panel-title {
+  letter-spacing: -0.015em;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* 2. Clearer Typographic Hierarchy */
+.form-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 8px;
+  display: block;
+  transition: color 0.18s ease;
+}
+
+.form-group:focus-within .form-label {
+  color: #FFDF70;
+}
+
+.input-control,
+.select-control {
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+}
+
+#stat-total-files,
+#stat-total-size,
+#stat-zip-count,
+#stat-net-margin {
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.manifest-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.manifest-table th {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #64748B;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.manifest-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+}
+
+.code-container {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.code-preview {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  tab-size: 2;
+}
+
+/* 3. Visible Accessible Focus States */
+.input-control:focus-visible,
+.select-control:focus-visible {
+  outline: 2px solid #FFDF70;
+  outline-offset: 1px;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 1px #D4AF37, 0 0 18px rgba(212, 175, 55, 0.28);
+}
+
+.btn:focus-visible {
+  outline: 2px solid #FFDF70;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #07090E, 0 0 16px rgba(255, 223, 112, 0.45);
+}
+
+.btn-solana:focus-visible {
+  outline: 2px solid #14F195;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #07090E, 0 0 16px rgba(20, 241, 149, 0.45);
+}
+
+.modal-close:focus-visible {
+  outline: 2px solid #FFDF70;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+a:focus-visible {
+  outline: 2px solid #FFDF70;
+  outline-offset: 2px;
+}
+
+/* 4. Result Appearance Motion (Transform + Opacity) */
+@keyframes waveResultReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#manifest-table-body tr {
+  animation: waveResultReveal 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#manifest-table-body tr:nth-child(1) { animation-delay: 20ms; }
+#manifest-table-body tr:nth-child(2) { animation-delay: 50ms; }
+#manifest-table-body tr:nth-child(3) { animation-delay: 80ms; }
+#manifest-table-body tr:nth-child(4) { animation-delay: 110ms; }
+#manifest-table-body tr:nth-child(5) { animation-delay: 140ms; }
+#manifest-table-body tr:nth-child(6) { animation-delay: 170ms; }
+
+/* 5. Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  #manifest-table-body tr {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .control-panel,
+  .results-panel,
+  .output-section,
+  .form-label {
+    transition: none !important;
+  }
+}

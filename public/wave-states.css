@@ -1,0 +1,192 @@
+/* Digital Asset Forge — State Presentation Enhancements (Wave States)
+ * Visual Idea: Precision Calibrated Tactile Feedback
+ * High-contrast accessible focus-visible rings, responsive 140ms hover states,
+ * graceful empty container handling, crisp error validation, and reduced-motion overrides.
+ * All selectors strictly exist in public/index.html.
+ */
+
+/* 1. Global Focus-Visible Reset for Mouse Users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 2. Accessible High-Contrast Focus-Visible Rings */
+.btn:focus-visible,
+.header-actions a:focus-visible,
+.footer-links a:focus-visible,
+#btn-open-license-modal:focus-visible {
+  outline: 2px solid #FFDF70;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #07090E, 0 0 16px rgba(255, 223, 112, 0.45);
+}
+
+.btn-solana:focus-visible,
+#btn-depay-solana:focus-visible,
+#btn-depay-paywall:focus-visible,
+#btn-depay-modal:focus-visible {
+  outline: 2px solid #14F195;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #07090E, 0 0 16px rgba(20, 241, 149, 0.45);
+}
+
+.modal-close:focus-visible,
+#modal-close-btn:focus-visible {
+  outline: 2px solid #FFDF70;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.input-control:focus-visible,
+.select-control:focus-visible {
+  outline: 2px solid #FFDF70;
+  outline-offset: 1px;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 1px #D4AF37, 0 0 16px rgba(212, 175, 55, 0.28);
+}
+
+/* 3. Responsive Tactile Hover & Active States (140ms duration) */
+.btn {
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms ease, background-color 140ms ease, border-color 140ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.input-control,
+.select-control {
+  transition: border-color 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+}
+
+.input-control:hover:not(:focus):not(:disabled),
+.select-control:hover:not(:focus):not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(20, 26, 38, 0.85);
+}
+
+.manifest-table tbody tr {
+  transition: background-color 140ms ease;
+}
+
+.manifest-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.035);
+}
+
+.manifest-table tbody tr:hover td {
+  color: #FFFFFF;
+}
+
+.faq-card {
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.faq-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.modal-close {
+  transition: color 140ms ease, transform 140ms ease, background-color 140ms ease;
+}
+
+.modal-close:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: scale(1.08);
+}
+
+.modal-close:active {
+  transform: scale(0.96);
+}
+
+#btn-open-license-modal {
+  transition: color 140ms ease;
+}
+
+#btn-open-license-modal:hover {
+  color: #FFDF70 !important;
+}
+
+.footer-links a,
+.app-footer a {
+  transition: color 140ms ease;
+}
+
+.footer-links a:hover,
+.app-footer a:hover {
+  color: #FFDF70;
+}
+
+/* 4. Empty State Presentation */
+#license-status:empty {
+  display: none;
+}
+
+#code-preview:empty::before {
+  content: "Awaiting manifest generation...";
+  color: #64748B;
+  font-style: italic;
+}
+
+#manifest-table-body:empty {
+  min-height: 80px;
+}
+
+/* 5. Error & Validation State Presentation */
+.input-control:invalid,
+#price-input:invalid,
+#license-key-input:invalid {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.35), 0 0 12px rgba(239, 68, 68, 0.2);
+}
+
+.input-control:invalid:focus-visible,
+#price-input:invalid:focus-visible,
+#license-key-input:invalid:focus-visible {
+  outline: 2px solid #EF4444;
+  outline-offset: 1px;
+  border-color: #EF4444;
+  box-shadow: 0 0 0 1px #EF4444, 0 0 16px rgba(239, 68, 68, 0.35);
+}
+
+/* 6. Strict Reduced Motion Overrides */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .btn,
+  .btn:hover,
+  .btn:active,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-solana:hover,
+  .faq-card,
+  .faq-card:hover,
+  .manifest-table tbody tr,
+  .manifest-table tbody tr:hover,
+  .modal-close,
+  .modal-close:hover,
+  .modal-close:active,
+  #manifest-table-body tr {
+    transform: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+}
