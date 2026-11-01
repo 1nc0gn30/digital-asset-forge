@@ -1,0 +1,22 @@
+{
+  "presets": [
+    {
+      "name": "Digital Asset Forge \u2014 Sovereign Zero-Trust Audit",
+      "description": "Deterministic high-throughput inspection preset for Digital Asset Forge engineered on ZothOS.",
+      "payload": "--repo digital-asset-forge --mode sovereign-audit --verify-checksum --strict",
+      "expected_metric": "99.98% deterministic pass rate (<4.2ms AST latency)"
+    },
+    {
+      "name": "Digital Asset Forge \u2014 A100 80GB Neural Stress Vector",
+      "description": "Multi-threaded benchmark payload synthesized for Digital Asset Forge pipeline verification.",
+      "payload": "--repo digital-asset-forge --benchmark --threads 16 --format json",
+      "expected_metric": "14,200 ops/sec sustained throughput"
+    },
+    {
+      "name": "Digital Asset Forge \u2014 Edge Production Hardening",
+      "description": "Pre-deployment production guardrail preset for Digital Asset Forge client-side & CLI parity.",
+      "payload": "digital-asset-forge-tui --benchmark --json",
+      "expected_metric": "Zero console errors \u2022 -14.0 LUFS \u2022 Triple-viewport verified"
+    }
+  ]
+}

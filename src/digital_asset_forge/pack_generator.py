@@ -30,7 +30,7 @@ class ArtPackGenerator:
         return "_".join(clean.strip().split())
 
     @classmethod
-    def generate_manifest(cls, artwork_title: str = "Celestial Geometry", artist_name: str = "Neal Frazier") -> Dict[str, Any]:
+    def generate_manifest(cls, artwork_title: str = "Celestial Geometry", artist_name: str = "1nc0gn30") -> Dict[str, Any]:
         slug = cls.sanitize_title(artwork_title)
         files: List[PackFileSpec] = []
         total_estimated_mb = 0.0

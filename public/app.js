@@ -83,8 +83,6 @@
 
   function checkLicense() {
     const proBadge = document.getElementById("licenseBadge") || document.getElementById("pro-badge");
-    const salesBanner = document.getElementById("salesBanner");
-
     document.body.classList.add("licensed", "pro-unlocked", "pro-licensed");
     if (proBadge) {
       proBadge.className = "brand-badge badge-pro";
@@ -93,42 +91,10 @@
       proBadge.style.color = "var(--emerald, #10B981)";
       proBadge.style.borderColor = "var(--emerald, #10B981)";
     }
-    if (salesBanner) {
-      salesBanner.style.display = "none";
-    }
     if (codePreview) {
       codePreview.classList.remove("paywall-blur");
     }
   }
-
-  function openModal(triggerContext = "") {
-    if (paywallModal) {
-      paywallModal.classList.add("is-open");
-      paywallModal.style.display = "flex";
-    }
-  }
-
-  function closeModal() {
-    if (paywallModal) {
-      paywallModal.classList.remove("is-open");
-      paywallModal.style.display = "none";
-    }
-  }
-
-  window.openPaywallModal = openModal;
-  window.closePaywallModal = closeModal;
-  window.activateLicenseKey = function(key) {
-    if (!key) key = "FORGE-PRO-2026";
-    localStorage.setItem("asset_forge_licensed", "true");
-    localStorage.setItem("asset_forge_license", key);
-    localStorage.setItem("agent_asset_forge_pro", key);
-    localStorage.setItem("zoth_asset_forge_licensed", "true");
-    localStorage.setItem("pro_licensed", "true");
-    checkLicense();
-    closeModal();
-    showToast("⭐ Sovereign Pro License Active — All Features Unlocked!");
-    return true;
-  };
 
   function slugify(text) {
     return text.replace(/[^a-zA-Z0-9\s_-]/g, '').trim().split(/\s+/).join('_');
@@ -136,7 +102,7 @@
 
   function updateManifest() {
     const rawTitle = titleInput ? titleInput.value.trim() || "Celestial Geometry" : "Celestial Geometry";
-    const artist = artistInput ? artistInput.value.trim() || "Neal Frazier" : "Neal Frazier";
+    const artist = artistInput ? artistInput.value.trim() || "1nc0gn30" : "1nc0gn30";
     const slug = slugify(rawTitle);
     const niche = nicheSelect ? nicheSelect.value : "abstract";
     const price = priceInput ? parseFloat(priceInput.value) || 6.99 : 6.99;
@@ -260,96 +226,9 @@
 
   const copyBtn = document.getElementById("btn-copy-manifest");
   const downloadBtn = document.getElementById("btn-download-manifest");
-  const unlockPaywallBtn = document.getElementById("btn-unlock-paywall");
-  const openLicenseModalBtn = document.getElementById("btn-open-license-modal");
-  const headerKeyBtn = document.getElementById("btn-header-key");
-  const modalCloseBtn = document.getElementById("modal-close-btn");
-  const licenseStatusEl = document.getElementById("license-status");
 
   if (copyBtn) copyBtn.addEventListener("click", handleCopyAction);
   if (downloadBtn) downloadBtn.addEventListener("click", handleDownloadAction);
-  if (unlockPaywallBtn) unlockPaywallBtn.addEventListener("click", () => openModal("Paywall Unlock"));
-  if (headerKeyBtn) headerKeyBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    openModal("Header Key");
-  });
-  if (openLicenseModalBtn) openLicenseModalBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    openModal("Sales Banner Activate");
-  });
-  if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
-
-  if (activateBtn && licenseInput) {
-    const handleActivation = () => {
-      const val = licenseInput.value.trim();
-      if (val.length >= 6) {
-        localStorage.setItem("asset_forge_licensed", "true");
-        localStorage.setItem("asset_forge_license", val);
-        localStorage.setItem("agent_asset_forge_pro", val);
-        localStorage.setItem("zoth_asset_forge_licensed", "true");
-        localStorage.setItem("pro_licensed", "true");
-        checkLicense();
-        if (licenseStatusEl) {
-          licenseStatusEl.textContent = "✅ License successfully activated! All features unlocked.";
-          licenseStatusEl.style.color = "#10B981";
-        }
-        showToast("⭐ Sovereign Pro License Activated Successfully!");
-        setTimeout(() => {
-          closeModal();
-          updateManifest();
-        }, 500);
-      } else {
-        if (licenseStatusEl) {
-          licenseStatusEl.textContent = "❌ Please enter a valid license key or receipt order ID.";
-          licenseStatusEl.style.color = "#EF4444";
-        }
-        showToast("Please enter a valid license key or receipt order ID.");
-      }
-    };
-
-    activateBtn.addEventListener("click", handleActivation);
-    licenseInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        handleActivation();
-      }
-    });
-  }
-
-  if (paywallModal) {
-    paywallModal.addEventListener("click", (e) => {
-      if (e.target === paywallModal) closeModal();
-    });
-  }
-
-  // DePay Web3 Solana Triggers
-  document.querySelectorAll(".btn-depay-trigger").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (window.DePayButtons && typeof window.DePayButtons.init === "function") {
-        try {
-          window.DePayButtons.init({
-            integration: "428790dd-7ad1-407c-8ecf-c048c77a4cb8",
-            receiver: "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK",
-            amount: 19
-          });
-          return;
-        } catch (err) {
-          console.warn("DePay init warning:", err);
-        }
-      }
-      const solanaAddress = "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK";
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(solanaAddress).then(() => {
-          showToast(`⚡ Solana Receiver copied: ${solanaAddress}`);
-        }).catch(() => {
-          showToast(`⚡ Solana Receiver: ${solanaAddress}`);
-        });
-      } else {
-        showToast(`⚡ Solana Receiver: ${solanaAddress}`);
-      }
-    });
-  });
 
   checkLicense();
   updateManifest();

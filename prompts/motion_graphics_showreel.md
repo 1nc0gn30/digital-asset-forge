@@ -40,6 +40,6 @@
 
 ### Scene 4: The 1-Click Sovereign Unlock (11.5s – 15.0s)
 - **Visual**: The frosted glass paywall dissolves into an exportable manifest JSON and instant customer printing guide.
-- **CTA**: "Digital Asset Forge • $19 Lifetime Access".
-- **Attribution**: "Engineered by Neal Frazier Tech • nullai.tech".
+- **CTA**: "Digital Asset Forge • $0 Lifetime Access".
+- **Attribution**: "Engineered by 1nc0gn30 • NullAI • nullai.tech".
 - **Audio**: Golden chime resolve with sub-bass kick.

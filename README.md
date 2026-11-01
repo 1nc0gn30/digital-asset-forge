@@ -19,7 +19,7 @@
 
 ## 🏛️ Architectural Overview
 
-**Digital Asset Forge** is a sovereign digital commerce powerhouse in the **[Zoth Studio v2](https://zoth.nullai.tech)** arsenal and **[ZothOS Linux 3.3](https://zothos.nullai.tech)** ecosystem, engineered by **Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30))**.
+**Digital Asset Forge** is a sovereign digital commerce powerhouse in the **[Zoth Studio v2](https://zoth.nullai.tech)** arsenal and **[ZothOS Linux 3.3](https://zothos.nullai.tech)** ecosystem, engineered by **1nc0gn30 • NullAI ([@1nc0gn30](https://github.com/1nc0gn30))**.
 
 | Property | Specification |
 | :--- | :--- |
@@ -75,11 +75,11 @@ digital-asset-forge --json
 digital-asset-forge dpi --width 7200 --height 10800 --target-w 24 --target-h 36
 
 # Generate digital download pack manifest
-digital-asset-forge manifest --title "Celestial Merkaba" --artist "Neal Frazier"
+digital-asset-forge manifest --title "Celestial Merkaba" --artist "1nc0gn30"
 digital-asset-forge manifest --title "Celestial Merkaba" --json
 
 # Generate printing guide for customers
-digital-asset-forge guide --title "Celestial Merkaba" --shop "Neal Frazier Atelier"
+digital-asset-forge guide --title "Celestial Merkaba" --shop "1nc0gn30 Atelier"
 
 # Generate Etsy SEO title and 13 tags
 digital-asset-forge etsy --title "Celestial Merkaba" --niche geometric --price 7.50
@@ -92,7 +92,7 @@ digital-asset-forge server --port 8118
 
 ## ☕ 100% Free & Open-Access Support Architecture
 
-Every tool engineered by Neal Frazier Tech is **100% free, open, and unlocked by default**. There are zero paywalls, zero license locks, and zero feature gates.
+Every tool engineered by 1nc0gn30 • NullAI is **100% free, open, and unlocked by default**. There are zero paywalls, zero license locks, and zero feature gates.
 
 If this tool empowers your business or automates your art downloads, consider supporting development:
 
@@ -102,5 +102,5 @@ If this tool empowers your business or automates your art downloads, consider su
 ---
 
 <div align="center">
-  <sub>Engineered by <b>Neal Frazier Tech</b> (<a href="https://github.com/1nc0gn30">@1nc0gn30</a>) &bull; <a href="https://nullai.tech">NullAI Platform</a> &bull; <a href="https://zoth.nullai.tech">Zoth Studio v2</a></sub>
+  <sub>Engineered by <b>1nc0gn30 • NullAI</b> (<a href="https://github.com/1nc0gn30">@1nc0gn30</a>) &bull; <a href="https://nullai.tech">NullAI Platform</a> &bull; <a href="https://zoth.nullai.tech">Zoth Studio v2</a></sub>
 </div>

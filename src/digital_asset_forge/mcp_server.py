@@ -37,7 +37,7 @@ TOOLS_DEFINITIONS: List[Dict[str, Any]] = [
                 "artist_name": {
                     "type": "string",
                     "description": "Artist or shop name",
-                    "default": "Neal Frazier"
+                    "default": "1nc0gn30"
                 }
             },
             "required": ["artwork_title"]
@@ -124,7 +124,7 @@ def handle_call_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
 
     elif name == "forge_generate_art_pack_manifest":
         title = arguments.get("artwork_title", "Emerald Obsidian Horizon")
-        artist = arguments.get("artist_name", "Neal Frazier")
+        artist = arguments.get("artist_name", "1nc0gn30")
         manifest = ArtPackGenerator.generate_manifest(title, artist)
         return {
             "content": [{"type": "text", "text": json.dumps(manifest, indent=2)}]

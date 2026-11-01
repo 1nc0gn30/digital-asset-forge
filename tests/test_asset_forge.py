@@ -60,7 +60,7 @@ class TestDigitalAssetForge(unittest.TestCase):
         """Verify manifest generation and Etsy 20MB ZIP splitting logic."""
         manifest = ArtPackGenerator.generate_manifest(
             artwork_title="Bauhaus Midnight Horizon",
-            artist_name="Neal Frazier"
+            artist_name="1nc0gn30"
         )
         self.assertEqual(manifest["artwork_title"], "Bauhaus Midnight Horizon")
         self.assertEqual(manifest["total_files"], 6)  # 5 image ratios + 1 guide

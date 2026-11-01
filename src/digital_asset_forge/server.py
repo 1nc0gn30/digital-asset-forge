@@ -147,7 +147,7 @@ class AssetForgeHandler(http.server.SimpleHTTPRequestHandler):
 
         if path == "/api/generate_pack":
             title = payload.get("artwork_title", "Abstract Horizon")
-            artist = payload.get("artist_name", "Neal Frazier")
+            artist = payload.get("artist_name", "1nc0gn30")
             manifest = ArtPackGenerator.generate_manifest(artwork_title=title, artist_name=artist)
 
             TELEMETRY["packs_generated"] += 1

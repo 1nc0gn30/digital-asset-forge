@@ -22,7 +22,7 @@ def main():
     # Subcommand: manifest
     p_manifest = subparsers.add_parser("manifest", help="Generate multi-ratio digital product pack manifest")
     p_manifest.add_argument("--title", default="Celestial Geometry", help="Artwork title")
-    p_manifest.add_argument("--artist", default="Neal Frazier", help="Artist name")
+    p_manifest.add_argument("--artist", default="1nc0gn30", help="Artist name")
     p_manifest.add_argument("--json", action="store_true", help="Output raw JSON")
 
     # Subcommand: guide
