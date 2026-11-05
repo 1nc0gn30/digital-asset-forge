@@ -303,6 +303,22 @@
 
   <script src="/hero_canvas.js"></script>
   <script src="/app.js"></script>
-  <script src="/assets/sovereign-upgrade.js" defer></script>
+  
+
+  <script src="/sovereign_tutorial.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      if (window.createSovereignTutorial) {
+        window.createSovereignTutorial({
+          toolId: "digital-asset-forge",
+          toolName: "Digital Asset Forge",
+          tagline: "Generate game-ready assets, sprites, 3D models, and sound effects!",
+          accentColor: "#F59E0B",
+          steps: [{"icon": "\u2694\ufe0f", "title": "Game Developer Toolkit", "desc": "Quickly create 2D pixel-art character sprites, item icons, and texture patterns for your indie games."}, {"icon": "\ud83c\udfb2", "title": "Procedural Variations", "desc": "Hit randomize to explore hundreds of unique weapon skins, potions, and character armor styles."}, {"icon": "\ud83d\udcc1", "title": "Game Engine Ready", "desc": "Exports cleanly formatted PNG spritesheets and JSON atlas files ready for Godot, Unity, or Phaser."}]
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
