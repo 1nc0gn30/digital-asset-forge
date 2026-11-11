@@ -101,7 +101,7 @@ class AssetForgeHandler(http.server.SimpleHTTPRequestHandler):
             self._send_json({
                 "status": "healthy",
                 "service": "digital-asset-forge",
-                "version": "1.0.0",
+                "version": "2.5.0",
                 "port": PORT,
                 "uptime_seconds": round(time.time() - START_TIME, 1)
             })

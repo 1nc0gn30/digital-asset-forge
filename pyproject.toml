@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "digital-asset-forge"
-version = "1.0.0"
+version = "2.5.0"
 description = "High-Res 300 DPI Multi-Ratio Wall Art Pack Generator for Etsy & Shopify Digital Downloads"
-authors = [{ name = "1nc0gn30", email = "neal@nullai.tech" }]
+authors = [{ name = "1nc0gn30", email = "ops@nullai.tech" }]
 license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.10"

@@ -17,7 +17,14 @@ def main():
         prog="digital-asset-forge",
         description="High-Res 300 DPI Multi-Ratio Wall Art Pack Generator (Etsy & Shopify 98% Margin)"
     )
+    parser.add_argument("--version", action="version", version="digital-asset-forge 2.5.0")
+    parser.add_argument("--status", action="store_true", help="Print service status and ratio summary")
+    parser.add_argument("--json", action="store_true", help="Output JSON payload")
     subparsers = parser.add_subparsers(dest="command", help="Available subcommands")
+
+    # Subcommand: status
+    p_status = subparsers.add_parser("status", help="Print service status and ratio summary")
+    p_status.add_argument("--json", action="store_true", help="Output raw JSON")
 
     # Subcommand: manifest
     p_manifest = subparsers.add_parser("manifest", help="Generate multi-ratio digital product pack manifest")
@@ -49,6 +56,23 @@ def main():
     p_server.add_argument("--port", type=int, default=8118, help="Server port (default: 8118)")
 
     args = parser.parse_args()
+
+    if args.status or args.command == "status" or (args.json and not args.command):
+        families = RatioCalculator.get_all_families()
+        payload = {
+            "service": "digital-asset-forge",
+            "version": "2.5.0",
+            "status": "ready",
+            "default_port": 8118,
+            "local_url": "http://127.0.0.1:8118",
+            "ratio_family_count": len(families),
+            "ratio_families": [f.get("id") or f.get("key") or f.get("name") for f in families] if isinstance(families, list) else list(families.keys()),
+        }
+        if getattr(args, "json", False):
+            print(json.dumps(payload, indent=2))
+        else:
+            print(f"Digital Asset Forge v{payload['version']} | Status: {payload['status']} | Port: {payload['default_port']} | Ratios: {payload['ratio_family_count']}")
+        return
 
     if args.command == "manifest":
         manifest = ArtPackGenerator.generate_manifest(args.title, args.artist)

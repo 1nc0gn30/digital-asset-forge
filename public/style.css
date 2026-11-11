@@ -419,7 +419,7 @@ html, body {
   color: #93C5FD;
 }
 
-/* Output Paywall Section */
+/* Output Manifest Section */
 .output-section {
   position: relative;
   background: var(--bg-surface);
@@ -450,23 +450,13 @@ html, body {
   max-width: 100%;
 }
 
-.paywall-blur {
-  filter: none !important;
-  transition: none !important;
-  user-select: text !important;
-  pointer-events: auto !important;
-}
-
-body.licensed .paywall-blur {
+.output-unlocked {
   filter: none !important;
   user-select: text !important;
   pointer-events: auto !important;
 }
 
-.paywall-overlay,
 #salesBanner,
-#paywall-modal,
-#btn-depay-solana,
 #btn-header-key,
 #btn-open-license-modal {
   display: none !important;

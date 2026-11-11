@@ -55,9 +55,6 @@
   const netMarginEl = document.getElementById("stat-net-margin");
 
   const codePreview = document.getElementById("code-preview");
-  const paywallModal = document.getElementById("paywall-modal");
-  const licenseInput = document.getElementById("license-key-input");
-  const activateBtn = document.getElementById("btn-activate-key");
 
   // Toast Notification System
   function showToast(msg) {
@@ -92,7 +89,7 @@
       proBadge.style.borderColor = "var(--emerald, #10B981)";
     }
     if (codePreview) {
-      codePreview.classList.remove("paywall-blur");
+      codePreview.classList.add("output-unlocked");
     }
   }
 
